@@ -53,21 +53,21 @@ pipeline{
             steps{
                 script{
                    withDockerRegistry(credentialsId: 'docker', toolName: 'docker'){
-                       sh "docker build --build-arg REACT_APP_RAPID_API_KEY=f0ead79813ms -t youtube ."
-                       sh "docker tag youtube sevenajay/youtube:latest "
-                       sh "docker push sevenajay/youtube:latest "
+                       sh "docker build --build-arg REACT_APP_RAPID_API_KEY=d0df396b36msh999a81 -t youtube ."
+                       sh "docker tag youtube nithishnithi/youtube:latest "
+                       sh "docker push nithishnithi/youtube:latest "
                     }
                 }
             }
         }
         stage("TRIVY"){
             steps{
-                sh "trivy image sevenajay/youtube:latest > trivyimage.txt"
+                sh "trivy image nithishnithi/youtube:latest > trivyimage.txt"
             }
         }
         stage('Deploy to container'){
             steps{
-                sh 'docker run -d --name youtube1 -p 3000:3000 sevenajay/youtube:latest'
+                sh 'docker run -d --name youtube1 -p 3000:3000 nithishnithi/youtube:latest'
             }
         }
         stage('Deploy to kubernets'){
